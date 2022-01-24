@@ -1,0 +1,16 @@
+{
+  "hello": "Xin chào",
+  "cancel": "Cancel",
+  "close": "Close",
+  "sign-in": "Sign In",
+  "sign-out": "Sign Out",
+  "username": "Username",
+  "password": "Mật khẩu",
+  "is-loading": "Đang đăng nhập",
+  "home-page": "Homepage",
+  "trading-pair": "Trading Pair",
+  "wallet": "Wallet",
+  "loading": "Loading",
+
+  "login-to-continue": "Login to continue"
+}
