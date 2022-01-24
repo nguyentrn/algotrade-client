@@ -3,8 +3,8 @@ const { i18n } = require('./next-i18next.config');
 const env = {
   NETWORK: 'testnet',
   // SERVER_HOSTNAME: 'http://localhost:9999',
-  SERVER_HOSTNAME: 'http://lenthiendang.com:9999',
-  PROXY: 'http://lenthiendang.com:6969/',
+  SERVER_HOSTNAME: 'http://128.199.137.24:9999',
+  PROXY: 'http://128.199.137.24:6969/',
   NEXTAUTH_URL: 'http://localhost:3000',
 };
 

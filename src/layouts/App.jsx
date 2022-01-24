@@ -23,7 +23,6 @@ const App = (props) => {
         />
         <title>AlgoTrade</title>
       </Head>
-
       {session ? <DashboardLayout {...props} /> : <LoginLayout {...props} />}
     </Flex>
   );
