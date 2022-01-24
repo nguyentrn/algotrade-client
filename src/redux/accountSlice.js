@@ -39,7 +39,7 @@ export const getBalances = () => async (dispatch, getState) => {
   const {
     auth: { token },
   } = getState();
-  console.log(token);
+
   const res = await sendRequest({ method: 'get', pathname: 'account/balances', token });
   dispatch(setBalances(res.data));
 };
