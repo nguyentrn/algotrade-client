@@ -103,17 +103,17 @@ export default NextAuth({
     colorScheme: 'light',
   },
 
-  cookies: {
-    sessionToken: {
-      name: `next-auth.session-token`,
-      options: {
-        httpOnly: false,
-        sameSite: 'lax',
-        path: '/',
-        secure: true,
-      },
-    },
-  },
+  // cookies: {
+  //   sessionToken: {
+  //     name: `next-auth.session-token`,
+  //     options: {
+  //       httpOnly: false,
+  //       sameSite: 'lax',
+  //       path: '/',
+  //       secure: true,
+  //     },
+  //   },
+  // },
 
   // Enable debug messages in the console if you are having problems
   debug: false,
