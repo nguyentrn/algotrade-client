@@ -107,7 +107,7 @@ export default NextAuth({
     sessionToken: {
       name: `next-auth.session-token`,
       options: {
-        httpOnly: true,
+        httpOnly: false,
         sameSite: 'lax',
         path: '/',
         secure: false,
