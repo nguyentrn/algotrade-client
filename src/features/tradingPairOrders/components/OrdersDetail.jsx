@@ -1,6 +1,39 @@
 import React, { useEffect, useState } from 'react';
-import { Flex, Heading, Text, Table, Thead, Tbody, Tfoot, Tr, Th, Td, TableCaption } from '@chakra-ui/react';
+import { Flex, Heading, Table, Thead, Tbody, Tfoot, Tr, Th, Td } from '@chakra-ui/react';
 import dayjs from 'dayjs';
+
+const headers = [
+  {
+    label: 'Thời gian',
+    isNumeric: false,
+  },
+  {
+    label: 'Loại lệnh',
+    isNumeric: false,
+  },
+  {
+    label: 'Lệnh thứ',
+    isNumeric: true,
+  },
+  {
+    label: 'Mức giá',
+    isNumeric: true,
+  },
+  {
+    label: 'Lượng mua',
+    isNumeric: true,
+  },
+  {
+    label: 'Giá trị',
+    isNumeric: true,
+  },
+  {
+    label: 'Lợi nhuận',
+    isNumeric: true,
+  },
+];
+
+const StyledTd = (props) => <Td fontSize={{ base: '10', sm: 'xs', md: 'sm' }} px="0.5" {...props} />;
 
 const OrdersDetail = ({ orders }) => {
   const [profit, setProfit] = useState();
@@ -21,48 +54,30 @@ const OrdersDetail = ({ orders }) => {
 
       <Flex flexDir="column">
         <Table>
-          {/* <TableCaption>Imperial to metric conversion factors</TableCaption> */}
           <Thead>
             <Tr>
-              <Th pr="0">Thời gian</Th>
-              <Th px="0">Loại lệnh</Th>
-              <Th px="0" isNumeric>
-                Lệnh thứ
-              </Th>
-              <Th px="0" isNumeric>
-                Mức giá
-              </Th>
-              <Th px="0" isNumeric>
-                Lượng mua
-              </Th>
-              <Th px="0" isNumeric>
-                Giá trị
-              </Th>
-              <Th pl="0" isNumeric>
-                Lợi nhuận
-              </Th>
+              {headers.map((header) => (
+                <Th
+                  px="0.5"
+                  fontSize={{ base: '12', sm: 'initial', sm: 'xs', md: 'sm' }}
+                  key={header.label}
+                  isNumeric={header.isNumeric}
+                >
+                  {header.label}
+                </Th>
+              ))}
             </Tr>
           </Thead>
           <Tbody>
             {orders?.map((order) => (
               <Tr key={order.transactTime} bg={`${order.color}.100`} color={`${order.color}.900`}>
-                <Td pr="0">{dayjs(order.transactTime * 1000).format('HH:mm DD/MM')}</Td>
-                <Td px="0">{order.type}</Td>
-                <Td px="0" isNumeric>
-                  {order.position}
-                </Td>
-                <Td px="0" isNumeric>
-                  {order.price}$
-                </Td>
-                <Td px="0" isNumeric>
-                  {order.origQty}
-                </Td>
-                <Td px="0" isNumeric>
-                  {order.amount?.toFixed(2)}$
-                </Td>
-                <Td pl="0" isNumeric>
-                  {order.profit?.toFixed(2)}
-                </Td>
+                <StyledTd>{dayjs(order.transactTime * 1000).format('HH:mm DD/MM')}</StyledTd>
+                <StyledTd>{order.type}</StyledTd>
+                <StyledTd isNumeric>{order.position}</StyledTd>
+                <StyledTd isNumeric>{order.price}$</StyledTd>
+                <StyledTd isNumeric>{order.origQty?.toFixed(6)}$</StyledTd>
+                <StyledTd isNumeric>{order.amount?.toFixed(2)}$</StyledTd>
+                <StyledTd isNumeric>{order.profit ? `${order.profit?.toFixed(2)}$` : ''}</StyledTd>
               </Tr>
             ))}
           </Tbody>

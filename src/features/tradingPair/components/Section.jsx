@@ -16,6 +16,6 @@ export const SectionHeader = (props) => (
   />
 );
 
-const Section = (props) => <Flex flexDir="column" w="96" align="center" mx="2" {...props} />;
+const Section = (props) => <Flex flexDir="column" w={{ base: '100%', sm: '370px' }} align="center" {...props} />;
 
 export default Section;

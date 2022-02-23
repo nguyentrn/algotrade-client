@@ -3,10 +3,10 @@ import { Alert, AlertIcon, AlertTitle, AlertDescription } from '@chakra-ui/react
 
 const Error = (props) => {
   return (
-    <Alert status="error" {...props}>
+    <Alert status="error" fontSize="sm" {...props}>
       <AlertIcon />
       <AlertTitle mr={2}>{props.title}!</AlertTitle>
-      <AlertDescription fontWeigh="500">{props.desc}</AlertDescription>
+      <AlertDescription fontWeight="500">{props.desc}</AlertDescription>
     </Alert>
   );
 };

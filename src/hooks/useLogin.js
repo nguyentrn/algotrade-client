@@ -3,8 +3,9 @@ import { useDispatch } from 'react-redux';
 import { useCookie } from 'react-use';
 import { useSession } from 'next-auth/react';
 
+import { setToken } from '../redux/authSlice';
+import { getAccount } from '../redux/accountSlice';
 import { initTradingPairs } from '../redux/marketSlice';
-import { getUser, setToken } from '../redux/authSlice';
 
 const useLogin = () => {
   const { data: session } = useSession();
@@ -13,13 +14,8 @@ const useLogin = () => {
 
   useEffect(() => {
     if (token) {
-      dispatch(getUser(token));
-    }
-  }, [token]);
-
-  useEffect(() => {
-    if (token) {
       dispatch(setToken(token));
+      dispatch(getAccount());
       dispatch(initTradingPairs());
     }
   }, []);

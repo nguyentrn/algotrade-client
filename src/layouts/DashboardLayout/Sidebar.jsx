@@ -21,11 +21,10 @@ const Sidebar = () => {
 
   const sidebarItems = [
     { url: '/', label: t('home-page'), icon: RiHome3Line },
-    { url: '', label: t('account'), icon: RiAccountBoxLine },
+    { url: '/account', label: t('account'), icon: RiAccountBoxLine },
     { url: '/trading-pair', label: t('trading-pair'), icon: RiCurrencyLine },
     { url: '/wallet', label: t('wallet'), icon: RiWallet3Line },
     { url: '/backtest', label: t('backtest'), icon: RiLineChartLine },
-    { url: '', label: t('security'), icon: RiSecurePaymentLine },
     { url: '', label: t('team'), icon: RiTeamLine },
     { url: '', label: t('referer'), icon: FaPeopleCarry },
   ];
@@ -33,34 +32,50 @@ const Sidebar = () => {
   return (
     <Flex
       flexDir="column"
-      minW="60"
-      maxW="60"
-      h="100vh"
-      position="sticky"
-      top="0"
+      minW={{ base: '100%', lg: '56', xl: '72' }}
+      w={{ base: '100%', lg: '56', xl: '72' }}
+      h={{ base: '4rem', lg: '100vh' }}
+      bg={{ base: 'white', lg: 'initial' }}
+      zIndex={{ base: 10, lg: 'initial' }}
+      position={{ base: 'fixed', lg: 'sticky' }}
+      top={{ lg: '0' }}
+      borderTop={{ base: '1px', lg: '0' }}
+      borderColor="blackAlpha.100"
+      boxShadow={{ base: '2xl', lg: 'initial' }}
       bottom="0"
+      left="0"
+      right={{ base: '0', lg: 'initial' }}
       alignSelf="flex-start"
       align="center"
-      pt="5"
+      pt={{ base: '0', lg: '5' }}
     >
-      <Image src="https://wabes.ca/wp-content/uploads/2019/05/4.png" alt="logo" w="90%" py="10" />
-      <Flex flexDir="column" w="100%">
+      <Image
+        src="https://wabes.ca/wp-content/uploads/2019/05/4.png"
+        display={{ base: 'none', lg: 'initial' }}
+        alt="logo"
+        w="90%"
+        py="10"
+      />
+      <Flex flexDir={{ base: 'row', lg: 'column' }} w="100%" h={{ base: '4rem', lg: 'initial' }}>
         {sidebarItems.map(({ url, label, icon }) => (
           <Link key={label} href={url} passHref>
             <Flex
               key={url}
               cursor="pointer"
-              p="4"
+              p={{ base: '0', lg: '4' }}
               bg={pathname === url ? 'primary.800' : ''}
               color={pathname === url ? 'primary.100' : ''}
               w="100%"
-              alignItems="center"
+              align={{ base: 'center', lg: 'initial' }}
+              justify={{ base: 'center', lg: 'initial' }}
               fontWeight="600"
             >
-              <Icon as={icon} fontSize="2xl" mr="2" />
-              <Text fontSize="sm" color={url === '' && 'blackAlpha.400'}>
-                {label}
-              </Text>
+              <Flex color={url === '' && 'blackAlpha.400'}>
+                <Icon as={icon} fontSize="2xl" />
+                <Text ml={2} display={{ base: 'none', lg: 'initial' }} fontSize="sm">
+                  {label}
+                </Text>
+              </Flex>
             </Flex>
           </Link>
         ))}

@@ -45,23 +45,22 @@ const BacktestForm = ({ fetchData }) => {
     fetchData(data);
   };
 
-  useEffect(() => {
-    fetchData({
-      symbol: 'BTCUSDT',
-      isDCA: true,
-      strategy: 'simple-dca',
-      backtestLength: 600,
-      ...defaultSettings,
-    });
-  }, []);
-
   return (
     <>
       <Heading fontSize="xl" fontWeight="500" my="4">
         Thiết đặt lệnh
       </Heading>
       <FormProvider {...methods}>
-        <Flex as="form" flexDir="column" onSubmit={methods.handleSubmit(onSubmit)} px="8" py="4" m="auto" w="80%">
+        <Flex
+          as="form"
+          flexDir="column"
+          onSubmit={methods.handleSubmit(onSubmit)}
+          px={{ base: '2', sm: '8' }}
+          py="4"
+          m="auto"
+          w="100%"
+          maxW="800px"
+        >
           <SettingHeading>Tiền điện tử</SettingHeading>
           <Select {...methods.register('symbol')}>
             {tradingPairs.map(({ symbol }) => (

@@ -43,7 +43,7 @@ const TradingPairLayout = ({ symbol }) => {
 
   if (!tradingPair) {
     return (
-      <Flex w="100%" h="100%">
+      <Flex h="100%">
         <Spinner m="auto" size="xl" colorScheme="primaryAlpha.900" />
       </Flex>
     );
@@ -63,7 +63,7 @@ const TradingPairLayout = ({ symbol }) => {
         mt="5"
         onClick={handleActive}
         colorScheme={tradingPair.isActive ? 'orange' : 'primary'}
-        isDisabled
+        // isDisabled
       >
         {tradingPair.isActive ? t('stop') : t('start')}
       </Button>

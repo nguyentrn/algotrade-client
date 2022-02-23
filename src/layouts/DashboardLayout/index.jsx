@@ -3,7 +3,8 @@ import { Flex } from '@chakra-ui/react';
 import SocketContext from '../../context/SocketContext.js';
 import useAccountInfo from '../../hooks/useAccountInfo';
 import useSocket from '../../hooks/useSocket';
-import Breadcrumb from './Breadcrumb.jsx';
+import Breadcrumb from './Breadcrumb';
+import Error from './Error';
 import Header from './Header';
 import Sidebar from './Sidebar';
 
@@ -12,12 +13,20 @@ const DashboardLayout = (props) => {
   useAccountInfo();
   return (
     <SocketContext.Provider value={socket}>
-      <Flex w="100%" minH="100vh" bg="blackAlpha.100">
+      <Flex
+        w="100%"
+        minH="100vh"
+        flexDir={{ base: 'column-reverse', lg: 'row' }}
+        pb={{ base: '1rem', lg: 'initial' }}
+        bg="blackAlpha.100"
+        pos="relative"
+      >
         <Sidebar />
-        <Flex flexDir="column" w="100%" mr="4" boxShadow="lg" bg="whiteAlpha.900">
+        <Flex flexDir="column" mr={{ base: '0', lg: '4' }} boxShadow="lg" bg="whiteAlpha.900" flexGrow="1">
           <Header />
+          <Error />
           {/* <Breadcrumb /> */}
-          <Flex px="20" pb="20" pt="5" {...props} />
+          <Flex px={{ base: '5px', lg: '20px' }} pb="20" pt="5" {...props} />
         </Flex>
       </Flex>
     </SocketContext.Provider>

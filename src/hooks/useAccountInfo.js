@@ -2,25 +2,26 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSession } from 'next-auth/react';
 
-import { getBalances, checkApiExpired, selectIsApiExpired } from '../redux/accountSlice';
+import { getBalances, checkApiEnabled, selectIsApiEnabled } from '../redux/accountSlice';
 
 const useAccountInfo = () => {
   const data = useSession();
   const dispatch = useDispatch();
-  const isApiExpired = useSelector(selectIsApiExpired);
+  const isApiEnabled = useSelector(selectIsApiEnabled);
   useEffect(() => {
-    if (data.status === 'authenticated') {
-      dispatch(checkApiExpired());
+    console.log(isApiEnabled);
+    if (data.status === 'authenticated' && isApiEnabled === undefined) {
+      dispatch(checkApiEnabled());
     }
-  }, [data, dispatch]);
+  }, [data?.status, dispatch, isApiEnabled]);
 
   useEffect(() => {
-    if (!isApiExpired) {
+    if (!isApiEnabled) {
       dispatch(getBalances());
     }
-  }, [dispatch, isApiExpired]);
+  }, [dispatch, isApiEnabled]);
 
-  // return data;
+  return data;
 };
 
 export default useAccountInfo;

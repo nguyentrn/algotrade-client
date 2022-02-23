@@ -1,15 +1,15 @@
 import dynamic from 'next/dynamic';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-import App from '../../layouts/App';
-const TradingPairList = dynamic(() => import('../../features/tradingPairList'), {
+import App from '../layouts/App';
+const Account = dynamic(() => import('../features/account'), {
   ssr: false,
 });
 
-const TradingPairListPage = () => {
+const WalletPage = () => {
   return (
     <App>
-      <TradingPairList />
+      <Account />
     </App>
   );
 };
@@ -20,4 +20,4 @@ export const getStaticProps = async ({ locale }) => ({
   },
 });
 
-export default TradingPairListPage;
+export default WalletPage;

@@ -3,8 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 import sendRequest from '../utils/sendRequest';
 
 const initialState = {
-  apiKey: undefined,
-  secret: undefined,
+  api_key: undefined,
+  secret_key: undefined,
   token: undefined,
   isLoading: false,
 };
@@ -15,8 +15,8 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     setAPIKey: (state, action) => {
-      state.secret = action.payload.secret;
-      state.apiKey = action.payload.apiKey;
+      state.secret_key = action.payload.secret_key;
+      state.api_key = action.payload.api_key;
     },
     toggleLoading: (state, action) => {
       state.isLoading = action.payload;
@@ -30,19 +30,8 @@ export const authSlice = createSlice({
 export const { setToken, setAPIKey, toggleLoading } = authSlice.actions;
 
 // Actions
-export const getUser = (token) => async (dispatch) => {
-  const res = await sendRequest({ pathname: 'auth/check', token });
-  if (res.data) {
-    const { binance_api_key: apiKey, binance_secret_key: secret } = res.data;
-    dispatch(
-      setAPIKey({
-        apiKey,
-        secret,
-      })
-    );
-  }
-};
 
 // Selectors
+export const selectToken = (state) => state.auth.token;
 
 export default authSlice.reducer;

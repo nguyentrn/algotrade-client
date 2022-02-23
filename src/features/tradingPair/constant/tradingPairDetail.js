@@ -8,5 +8,6 @@ export const advancedStrategyProps = {
   'simple-dca': [
     { prop: 'earningCallback', unit: '$', min: 0.01, max: undefined, precision: 2, step: 0.1 },
     { prop: 'callbackForMarginCall', unit: '%', min: 0.01, max: undefined, precision: 2, step: 0.1 },
+    { prop: 'initPeriod', unit: 'session', min: 1, max: 1440, precision: 0, step: 1 },
   ],
 };

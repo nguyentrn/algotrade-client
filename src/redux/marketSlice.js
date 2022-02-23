@@ -1,9 +1,8 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { sortBy } from 'ramda';
-import defaultTradingSettings from '../features/tradingPair/constant/defaultTradingSettings';
 
+import defaultTradingSettings from '../features/tradingPair/constant/defaultTradingSettings';
 import sendRequest from '../utils/sendRequest';
-import dump from './dump';
 
 const sortTradingPairs = sortBy((tradingPair) => tradingPair.isActive !== true);
 const formatOrders = (orders) => {
@@ -108,7 +107,6 @@ export const fetchHistory = (symbol) => async (dispatch, getState) => {
   const res = await sendRequest({ method: 'get', pathname: 'trading-pair/history', token, query: { symbol } });
   res.data.orders = formatOrders(res.data.orders);
   dispatch(setHistory(res.data));
-  // dispatch(setHistory(dump));
 };
 
 export const updateStrategy = (data) => async (dispatch, getState) => {

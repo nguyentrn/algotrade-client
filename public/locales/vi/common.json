@@ -45,5 +45,6 @@
   "advanced-strategy-settings": "Cài đặt Chiến lược nâng cao",
   "advanced-strategy": "Chiến lược nâng cao",
   "earningCallback": "Chốt lời khi hồi lại",
-  "callbackForMarginCall": "Mua vào khi hồi lên"
+  "callbackForMarginCall": "Mua vào khi hồi lên",
+  "initPeriod": "Số phiên xét khi khởi tạo lệnh"
 }

@@ -16,14 +16,16 @@ const TradingPair = ({ tradingPair }) => {
     <Link href={`/trading-pair/${tradingPair.symbol}`} passHref>
       <Flex
         cursor="pointer"
-        mx="8"
-        my="2"
-        px="6"
-        py="4"
-        w="96"
+        // bg="red"
+        mx={{ base: '0', sm: '8' }}
+        my={{ base: '1', lg: '2' }}
+        px={{ base: '4', lg: '6' }}
+        py={{ base: '2', lg: '4' }}
+        // px="6"
+        w={{ base: '100%', sm: '96' }}
         border="1px"
         align="center"
-        borderColor="gray.300"
+        borderColor="gray.200"
         borderRadius="md"
         pos="relative"
         color="blackAlpha.900"

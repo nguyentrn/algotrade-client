@@ -11,9 +11,9 @@ const Description = ({ tradingPair }) => {
 
   return (
     <Flex
+      flexDir={{ base: 'column', md: 'row' }}
       align="center"
       justify="space-between"
-      w="100%"
       my="4"
       bg={tradingPair.color ? getTokenAlphaColor(tradingPair.color) : 'primaryAlpha.200'}
       p="4"
@@ -41,7 +41,6 @@ const Description = ({ tradingPair }) => {
         data={tradingPair.isActive ? t('activating') : t('inactive')}
         color={tradingPair.isActive ? 'green.500' : 'yellow.500'}
       />
-      <DescriptionItem label={t('mode')} data={t('single')} />
       <DescriptionItem label={t('strategy')} data={t('dca')} />
       <DescriptionItem label={t('number-of-position')} data={`x${tradingPair.entryPoints.length}`} />
 

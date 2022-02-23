@@ -1,11 +1,10 @@
 const { i18n } = require('./next-i18next.config');
 
 const env = {
-  NETWORK: 'testnet',
+  NETWORK: 'mainnet',
   // SERVER_HOSTNAME: 'http://localhost:9999',
   SERVER_HOSTNAME: 'http://128.199.137.24:9999',
   PROXY: 'http://128.199.137.24:6969/',
-  NEXTAUTH_URL: 'http://localhost:3000',
 };
 
 if (env.NETWORK === 'testnet') {
