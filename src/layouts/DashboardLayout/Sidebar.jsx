@@ -21,12 +21,12 @@ const Sidebar = () => {
 
   const sidebarItems = [
     { url: '/', label: t('home-page'), icon: RiHome3Line },
-    { url: '/account', label: t('account'), icon: RiAccountBoxLine },
     { url: '/trading-pair', label: t('trading-pair'), icon: RiCurrencyLine },
     { url: '/wallet', label: t('wallet'), icon: RiWallet3Line },
     { url: '/backtest', label: t('backtest'), icon: RiLineChartLine },
-    { url: '', label: t('team'), icon: RiTeamLine },
-    { url: '', label: t('referer'), icon: FaPeopleCarry },
+    { url: '/account', label: t('account'), icon: RiAccountBoxLine },
+    // { url: '', label: t('team'), icon: RiTeamLine },
+    // { url: '', label: t('referer'), icon: FaPeopleCarry },
   ];
 
   return (
