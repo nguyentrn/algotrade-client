@@ -27,26 +27,29 @@ const Wallet = () => {
         <Heading fontSize="2xl">Ví Binance</Heading>
         <Flex flexWrap="wrap" align="center" justify="space-around" w={{ base: '100%', sm: '620px' }} m="auto">
           {Object.values(balances).length ? (
-            Object.values(balances).map((balance) => (
-              <Flex
-                key={balance.asset}
-                bg={getTokenAlphaColor(balance.color)}
-                h="20"
-                w="300px"
-                m="5px"
-                p="4"
-                align="center"
-                borderRadius="xl"
-                boxShadow="sm"
-              >
-                <Image h="12" mr="4" src={`images/coins/${balance.asset}.png`} alt={`${balance.asset}-logo`} />
-                <Flex fontSize="lg" fontWeight="semibold" flexDir="column">
-                  <Text>
-                    {Math.round(balance.free * 10000 + balance.locked * 10000) / 10000} {balance.asset}
-                  </Text>
-                </Flex>
-              </Flex>
-            ))
+            Object.values(balances).map(
+              (balance) =>
+                balance.free * 1 !== 0 && (
+                  <Flex
+                    key={balance.asset}
+                    bg={getTokenAlphaColor(balance.color)}
+                    h="20"
+                    w="300px"
+                    m="5px"
+                    p="4"
+                    align="center"
+                    borderRadius="xl"
+                    boxShadow="sm"
+                  >
+                    <Image h="12" mr="4" src={`images/coins/${balance.asset}.png`} alt={`${balance.asset}-logo`} />
+                    <Flex fontSize="lg" fontWeight="semibold" flexDir="column">
+                      <Text>
+                        {Math.round(balance.free * 10000 + balance.locked * 10000) / 10000} {balance.asset}
+                      </Text>
+                    </Flex>
+                  </Flex>
+                )
+            )
           ) : (
             <Text color="red.500" fontWeight="500" fontSize="xs">
               Kết nối Binance thất bại! Vui lòng nhập thông tin API tại trang thông tin!

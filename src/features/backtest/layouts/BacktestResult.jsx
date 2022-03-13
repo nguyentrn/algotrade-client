@@ -9,6 +9,7 @@ const BacktestResult = ({ loading, error, backtest, change, info, entryPositions
   if (loading) {
     return <Spinner m="auto" />;
   }
+
   if (error) {
     return (
       <Text m="auto" fontSize="sm" color="red.500">

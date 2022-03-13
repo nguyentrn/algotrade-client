@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import NumberInput from '../../../../components/NumberInput';
 import useLocalization from '../../../../hooks/useLocalization';
-import { fundManagementProps } from '../../constant/tradingPairDetail';
+import { fundManagementProps } from '../../../../constant/tradingPairDetail';
 import { updateStrategy } from '../../../../redux/marketSlice';
 
 const FundManagementForm = ({ onClose, tradingPair }) => {

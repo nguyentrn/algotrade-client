@@ -1,12 +1,12 @@
-import { Flex } from '@chakra-ui/react';
 import React, { useState } from 'react';
-
-import sendRequest from '../../utils/sendRequest';
-import BacktestForm from './components/BacktestForm';
-import formatOrders from '../../utils/formatOrders';
 import { useSelector } from 'react-redux';
+import { Flex } from '@chakra-ui/react';
+
+import BacktestForm from './layouts/BacktestForm';
+import BacktestResult from './layouts/BacktestResult';
+import sendRequest from '../../utils/sendRequest';
+import formatOrders from '../../utils/formatOrders';
 import { selectToken } from '../../redux/authSlice';
-import BacktestResult from './components/BacktestResult';
 
 const Backtest = () => {
   const [info, setInfo] = useState();

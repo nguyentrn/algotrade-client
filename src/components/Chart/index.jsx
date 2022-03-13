@@ -1,7 +1,6 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import ReactECharts from 'echarts-for-react';
 import dayjs from 'dayjs';
-import formatOrders from '../../utils/formatOrders.js';
 import colors from '../../theme/colors.js';
 import { Heading } from '@chakra-ui/react';
 
@@ -10,7 +9,6 @@ const Chart = ({ backtest }) => {
   const upBorderColor = colors.red[700];
   const downColor = colors.green[300];
   const downBorderColor = colors.green[700];
-  // Each item: open，close，lowest，highest
 
   function calculateMA(dayCount) {
     var result = [];
@@ -36,7 +34,7 @@ const Chart = ({ backtest }) => {
       },
     },
     legend: {
-      data: ['Nến', 'MA5', 'MA10', 'MA20', 'MA30'],
+      data: ['Nến', 'MA20', 'MA50', 'MA200'],
     },
     grid: {
       left: '4%',
@@ -124,24 +122,6 @@ const Chart = ({ backtest }) => {
         },
       },
       {
-        name: 'MA5',
-        type: 'line',
-        data: calculateMA(5),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
-      },
-      {
-        name: 'MA10',
-        type: 'line',
-        data: calculateMA(10),
-        smooth: true,
-        lineStyle: {
-          opacity: 0.5,
-        },
-      },
-      {
         name: 'MA20',
         type: 'line',
         data: calculateMA(20),
@@ -151,9 +131,18 @@ const Chart = ({ backtest }) => {
         },
       },
       {
-        name: 'MA30',
+        name: 'MA50',
         type: 'line',
-        data: calculateMA(30),
+        data: calculateMA(50),
+        smooth: true,
+        lineStyle: {
+          opacity: 0.5,
+        },
+      },
+      {
+        name: 'MA200',
+        type: 'line',
+        data: calculateMA(200),
         smooth: true,
         lineStyle: {
           opacity: 0.5,

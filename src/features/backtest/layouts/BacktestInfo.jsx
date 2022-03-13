@@ -1,17 +1,4 @@
-import {
-  Flex,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  Badge,
-  Image,
-  Text,
-  Heading,
-} from '@chakra-ui/react';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { Text, Heading } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import useLocalization from '../../../hooks/useLocalization';
 import { selectTradingPairs } from '../../../redux/marketSlice';

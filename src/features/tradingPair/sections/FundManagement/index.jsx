@@ -3,7 +3,7 @@ import { Tbody, Tr, Td, Table, Text } from '@chakra-ui/react';
 import Section, { SectionHeader } from '../../components/Section';
 import useLocalization from '../../../../hooks/useLocalization';
 import FundManagementSettings from './FundManagementSettings';
-import { fundManagementProps } from '../../constant/tradingPairDetail';
+import { fundManagementProps } from '../../../../constant/tradingPairDetail';
 
 const FundManagementSection = ({ tradingPair }) => {
   const t = useLocalization('common');

@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import NumberInput from '../../../../components/NumberInput';
 import useLocalization from '../../../../hooks/useLocalization';
-import { advancedStrategyProps } from '../../constant/tradingPairDetail';
+import { advancedStrategyProps } from '../../../../constant/tradingPairDetail';
 import { updateStrategy } from '../../../../redux/marketSlice';
 
 const StrategyForm = ({ onClose, tradingPair }) => {

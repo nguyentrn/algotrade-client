@@ -5,10 +5,10 @@ import { scaleLinear } from '@visx/scale';
 import { Annotation, CircleSubject } from '@visx/annotation';
 import { Group } from '@visx/group';
 import { AxisBottom, AxisRight } from '@visx/axis';
-
-import colors from '../../../../theme/colors';
 import { min, max } from 'd3-array';
 import { Grid } from '@visx/grid';
+
+import colors from '../../../../theme/colors';
 import { MARGIN } from './variables';
 
 const getDate = (d) => d.time;

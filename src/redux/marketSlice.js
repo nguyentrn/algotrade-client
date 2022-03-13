@@ -1,7 +1,7 @@
 import { createSelector, createSlice } from '@reduxjs/toolkit';
 import { sortBy } from 'ramda';
 
-import defaultTradingSettings from '../features/tradingPair/constant/defaultTradingSettings';
+import defaultTradingSettings from '../constant/defaultTradingSettings';
 import sendRequest from '../utils/sendRequest';
 
 const sortTradingPairs = sortBy((tradingPair) => tradingPair.isActive !== true);

@@ -6,17 +6,50 @@ import { useSelector } from 'react-redux';
 import DCAInput from '../../tradingPair/sections/DCA/DCAInput';
 import { selectTradingPairs } from '../../../redux/marketSlice';
 import NumberInput from '../../../components/NumberInput';
-import { advancedStrategyProps, fundManagementProps } from '../../tradingPair/constant/tradingPairDetail';
+import { advancedStrategyProps, fundManagementProps } from '../../../constant/tradingPairDetail';
 import useLocalization from '../../../hooks/useLocalization';
-import defaultSettings from '../../tradingPair/constant/defaultTradingSettings';
+import defaultSettings from '../../../constant/defaultTradingSettings';
 import createEntryPointInputs from '../../tradingPair/sections/DCA/createEntryPointInputs';
+
+const strategies = ['simple-dca', 'reversed-trade'];
 
 const SettingHeading = (props) => {
   return <Text fontWeight="700" color="primary.600" my="2" {...props} />;
 };
 
-const BacktestForm = ({ fetchData }) => {
+const StrategySelector = ({ methods }) => {
+  return (
+    <>
+      <SettingHeading>Chiến thuật</SettingHeading>
+      <Select {...methods.register('strategy')}>
+        {strategies.map((strategy) => (
+          <option key={strategy} value={strategy} register={{ ...methods.register('strategy') }}>
+            {strategy}
+          </option>
+        ))}
+      </Select>
+    </>
+  );
+};
+
+const CoinSelector = ({ methods }) => {
   const tradingPairs = useSelector(selectTradingPairs);
+
+  return (
+    <>
+      <SettingHeading>Tiền điện tử</SettingHeading>
+      <Select {...methods.register('symbol')}>
+        {tradingPairs.map(({ symbol }) => (
+          <option key={symbol} value={symbol} register={{ ...methods.register('symbol') }}>
+            {symbol}
+          </option>
+        ))}
+      </Select>
+    </>
+  );
+};
+
+const BacktestForm = ({ fetchData }) => {
   const methods = useForm({
     shouldUnregister: true,
   });
@@ -61,14 +94,9 @@ const BacktestForm = ({ fetchData }) => {
           w="100%"
           maxW="800px"
         >
-          <SettingHeading>Tiền điện tử</SettingHeading>
-          <Select {...methods.register('symbol')}>
-            {tradingPairs.map(({ symbol }) => (
-              <option key={symbol} value={symbol} register={{ ...methods.register('symbol') }}>
-                {symbol}
-              </option>
-            ))}
-          </Select>
+          <StrategySelector methods={methods} />
+          <CoinSelector methods={methods} />
+
           <Flex justify="space-between" align="center">
             <Text fontSize="sm">{t('backtest-length')}</Text>
             <NumberInput
