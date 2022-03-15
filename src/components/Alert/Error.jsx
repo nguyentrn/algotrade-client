@@ -6,7 +6,7 @@ const Error = (props) => {
     <Alert status="error" fontSize="sm" {...props}>
       <AlertIcon />
       <AlertTitle mr={2}>{props.title}!</AlertTitle>
-      <AlertDescription fontWeight="500">{props.desc}</AlertDescription>
+      <AlertDescription fontWeight="500">{props.detail}</AlertDescription>
     </Alert>
   );
 };

@@ -4,15 +4,15 @@ import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 
 import useLocalization from '../../hooks/useLocalization';
-import { selectIsApiEnabled } from '../../redux/accountSlice';
 import { selectToken } from '../../redux/authSlice';
+import { selectPermissions } from '../../redux/accountSlice';
 import sendRequest from '../../utils/sendRequest';
 
 const Wallet = () => {
   const t = useLocalization('common');
   const [isLoading, toggleLoading] = useState(false);
   const token = useSelector(selectToken);
-  const isAPIEnabled = useSelector(selectIsApiEnabled);
+  const permissions = useSelector(selectPermissions);
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
 
   const onSubmit = async (data) => {
@@ -38,7 +38,7 @@ const Wallet = () => {
           <FormLabel htmlFor="api_key">API Key</FormLabel>
           <Input
             id="api_key"
-            defaultValue={isAPIEnabled ? '**********************************' : ''}
+            defaultValue={permissions ? '**********************************' : ''}
             {...register('api_key', { required: 'Please enter your api_key.' })}
           />
         </FormControl>
@@ -46,7 +46,7 @@ const Wallet = () => {
           <FormLabel htmlFor="secret_key">Secret Key</FormLabel>
           <Input
             id="secret_key"
-            defaultValue={isAPIEnabled ? '**********************************' : ''}
+            defaultValue={permissions ? '**********************************' : ''}
             {...register('secret_key', { required: 'Please enter your secret_key.' })}
           />
         </FormControl>

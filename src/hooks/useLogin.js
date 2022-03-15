@@ -3,8 +3,8 @@ import { useDispatch } from 'react-redux';
 import { useCookie } from 'react-use';
 import { useSession } from 'next-auth/react';
 
-import { setToken } from '../redux/authSlice';
-import { getAccount } from '../redux/accountSlice';
+import { setToken, login } from '../redux/authSlice';
+import { fetchAccount } from '../redux/accountSlice';
 import { initTradingPairs } from '../redux/marketSlice';
 
 const useLogin = () => {
@@ -15,8 +15,9 @@ const useLogin = () => {
   useEffect(() => {
     if (token) {
       dispatch(setToken(token));
-      dispatch(getAccount());
+      dispatch(login());
       dispatch(initTradingPairs());
+      dispatch(fetchAccount());
     }
   }, []);
 

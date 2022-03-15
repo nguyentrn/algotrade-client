@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useLocalization from '../../hooks/useLocalization';
-import { getOrders, selectIsApiEnabled } from '../../redux/accountSlice';
+import useAPIError from '../../hooks/useAPIError';
+import { getOrders } from '../../redux/accountSlice';
 import { updateStrategy } from '../../redux/marketSlice';
 import Description from './layouts/Description';
 import SectionLayout from './layouts/SectionLayout';
@@ -11,7 +12,7 @@ import SectionLayout from './layouts/SectionLayout';
 const TradingPairLayout = ({ symbol }) => {
   const [tradingPair, setTradingPair] = useState();
   const dispatch = useDispatch();
-  const isApiEnabled = useSelector(selectIsApiEnabled);
+  const error = useAPIError();
   const { tradingPairs } = useSelector((state) => state.market);
   const t = useLocalization('common');
   const handleActive = () => {
@@ -64,7 +65,7 @@ const TradingPairLayout = ({ symbol }) => {
         mt="5"
         onClick={handleActive}
         colorScheme={tradingPair.isActive ? 'orange' : 'primary'}
-        isDisabled={!isApiEnabled}
+        // isDisabled={error}
       >
         {tradingPair.isActive ? t('stop') : t('start')}
       </Button>

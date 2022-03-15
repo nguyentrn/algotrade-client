@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 import sendRequest from '../utils/sendRequest';
+import { setAccount } from './accountSlice';
 
 const initialState = {
   api_key: undefined,
@@ -30,6 +31,14 @@ export const authSlice = createSlice({
 export const { setToken, setAPIKey, toggleLoading } = authSlice.actions;
 
 // Actions
+export const login = () => async (dispatch, getState) => {
+  const {
+    auth: { token },
+  } = getState();
+
+  const res = await sendRequest({ method: 'get', pathname: 'auth/login', token });
+  dispatch(setAccount(res.data));
+};
 
 // Selectors
 export const selectToken = (state) => state.auth.token;

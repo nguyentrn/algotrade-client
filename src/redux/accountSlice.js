@@ -11,8 +11,8 @@ export const accountSlice = createSlice({
   name: 'account',
   initialState,
   reducers: {
-    setApiEnabled: (state, action) => {
-      state.isApiEnabled = action.payload;
+    setPermissions: (state, action) => {
+      state.permissions = action.payload;
     },
     setBalances: (state, action) => {
       state.balances = action.payload;
@@ -29,35 +29,19 @@ export const accountSlice = createSlice({
   },
 });
 
-export const { setAccount, setApiEnabled, setBalances, setOrders } = accountSlice.actions;
+export const { setAccount, setPermissions, setBalances, setOrders } = accountSlice.actions;
 
 // Actions
-export const checkApiEnabled = () => async (dispatch, getState) => {
+export const fetchAccount = () => async (dispatch, getState) => {
   const {
     auth: { token },
   } = getState();
 
-  const res = await sendRequest({ method: 'get', pathname: 'account/checkapi', token });
-  dispatch(setApiEnabled(res.data));
-};
-
-export const getBalances = () => async (dispatch, getState) => {
-  const {
-    auth: { token },
-  } = getState();
-
-  const res = await sendRequest({ method: 'get', pathname: 'account/balances', token });
-  dispatch(setBalances(res.data));
-};
-
-export const getAccount = () => async (dispatch, getState) => {
-  const {
-    auth: { token },
-  } = getState();
-
-  const res = await sendRequest({ method: 'get', pathname: 'auth/check', token });
-  console.log(res);
-  dispatch(setAccount(res.data));
+  const res = await sendRequest({ method: 'get', pathname: 'account/me', token });
+  if (res.data) {
+    dispatch(setBalances(res.data.balances));
+    dispatch(setPermissions(res.data.permissions));
+  }
 };
 
 export const getOrders = (symbol) => async (dispatch, getState) => {
@@ -66,12 +50,11 @@ export const getOrders = (symbol) => async (dispatch, getState) => {
   } = getState();
 
   const res = await sendRequest({ method: 'get', pathname: 'trading-pair/orders', token, query: { symbol } });
-
   dispatch(setOrders(res.data));
 };
 
 // Selectors
-export const selectIsApiEnabled = (state) => state.account.isApiEnabled;
+export const selectPermissions = (state) => state.account.permissions;
 export const selectBalances = (state) => state.account.balances;
 export const selectOrders = (state) => state.account.orders;
 export const selectFuel = (state) => state.account.fuel;

@@ -1,7 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 
 import SocketContext from '../../context/SocketContext.js';
-import useAccountInfo from '../../hooks/useAccountInfo';
 import useSocket from '../../hooks/useSocket';
 import Breadcrumb from './Breadcrumb';
 import Error from './Error';
@@ -10,7 +9,6 @@ import Sidebar from './Sidebar';
 
 const DashboardLayout = (props) => {
   const socket = useSocket();
-  useAccountInfo();
   return (
     <SocketContext.Provider value={socket}>
       <Flex

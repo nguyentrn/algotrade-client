@@ -51,8 +51,8 @@ const Wallet = () => {
                 )
             )
           ) : (
-            <Text color="red.500" fontWeight="500" fontSize="xs">
-              Kết nối Binance thất bại! Vui lòng nhập thông tin API tại trang thông tin!
+            <Text color="gray.500" fontWeight="500" fontSize="xs">
+              Không tìm thấy coin trong ví!
             </Text>
           )}
         </Flex>

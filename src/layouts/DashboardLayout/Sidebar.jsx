@@ -58,13 +58,14 @@ const Sidebar = () => {
       />
       <Flex flexDir={{ base: 'row', lg: 'column' }} w="100%" h={{ base: '4rem', lg: 'initial' }}>
         {sidebarItems.map(({ url, label, icon }) => (
-          <Link key={label} href={url} passHref>
+          <Link key={label} href={url} passHref current>
             <Flex
+              as="a"
               key={url}
               cursor="pointer"
               p={{ base: '0', lg: '4' }}
               bg={pathname === url ? 'primary.800' : ''}
-              color={pathname === url ? 'primary.100' : ''}
+              color={pathname === url ? 'primary.100' : 'blackAlpha.900'}
               w="100%"
               align={{ base: 'center', lg: 'initial' }}
               justify={{ base: 'center', lg: 'initial' }}
