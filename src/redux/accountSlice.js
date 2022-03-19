@@ -36,8 +36,8 @@ export const fetchAccount = () => async (dispatch, getState) => {
   const {
     auth: { token },
   } = getState();
-
   const res = await sendRequest({ method: 'get', pathname: 'account/me', token });
+  console.log(res);
   if (res.data) {
     dispatch(setBalances(res.data.balances));
     dispatch(setPermissions(res.data.permissions));

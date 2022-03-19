@@ -1,18 +1,21 @@
-import { Flex, Heading, FormControl, FormLabel, Input, Button } from '@chakra-ui/react';
+import { Flex, Heading, FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import useLocalization from '../../hooks/useLocalization';
 import { selectToken } from '../../redux/authSlice';
-import { selectPermissions } from '../../redux/accountSlice';
+import { fetchAccount, selectPermissions } from '../../redux/accountSlice';
 import sendRequest from '../../utils/sendRequest';
 
 const Wallet = () => {
   const t = useLocalization('common');
   const [isLoading, toggleLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [isSuccess, toggleSuccess] = useState(false);
   const token = useSelector(selectToken);
   const permissions = useSelector(selectPermissions);
+  const dispatch = useDispatch();
   const { register, handleSubmit } = useForm({ shouldUseNativeValidation: true });
 
   const onSubmit = async (data) => {
@@ -24,7 +27,14 @@ const Wallet = () => {
       data,
       token,
     });
-    console.log(res);
+    if (res.data) {
+      dispatch(fetchAccount());
+      toggleSuccess(true);
+      setError(null);
+    } else {
+      setError('API Key không hợp lệ');
+      console.log(res);
+    }
     toggleLoading(false);
   };
 
@@ -50,6 +60,11 @@ const Wallet = () => {
             {...register('secret_key', { required: 'Please enter your secret_key.' })}
           />
         </FormControl>
+        {(error || isSuccess) && (
+          <Text my="2" alignSelf="center" fontSize="xs" fontWeight="600" color={error ? 'red.500' : 'green.500'}>
+            {error ? error : 'Quý khách đã nhập API thành công'}
+          </Text>
+        )}
         <Button alignSelf="center" type="submit" isLoading={isLoading}>
           {t('submit')}
         </Button>
