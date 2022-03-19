@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import { useUpdate } from 'react-use';
 
 import useLogin from '../hooks/useLogin';
 import DashboardLayout from './DashboardLayout';

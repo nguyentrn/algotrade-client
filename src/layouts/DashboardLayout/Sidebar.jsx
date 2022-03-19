@@ -1,18 +1,35 @@
 import { Flex, Icon, Image, Text } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import {
-  RiWallet3Line,
-  RiHome3Line,
-  RiCurrencyLine,
-  RiLineChartLine,
-  RiTeamLine,
-  RiSecurePaymentLine,
-  RiAccountBoxLine,
-} from 'react-icons/ri';
-import { FaPeopleCarry } from 'react-icons/fa';
+import { forwardRef } from 'react';
+import { RiWallet3Line, RiHome3Line, RiCurrencyLine, RiLineChartLine, RiAccountBoxLine } from 'react-icons/ri';
 
 import useLocalization from '../../hooks/useLocalization';
+
+const LinkItem = ({ url, pathname, icon, label }) => {
+  return (
+    <Flex
+      // ref={ref}
+      as="a"
+      key={url}
+      cursor="pointer"
+      p={{ base: '0', lg: '4' }}
+      bg={pathname === url ? 'primary.800' : ''}
+      color={pathname === url ? 'primary.100' : 'blackAlpha.900'}
+      w="100%"
+      align={{ base: 'center', lg: 'initial' }}
+      justify={{ base: 'center', lg: 'initial' }}
+      fontWeight="600"
+    >
+      <Flex color={url === '' && 'blackAlpha.400'}>
+        <Icon as={icon} fontSize="2xl" />
+        <Text ml={2} display={{ base: 'none', lg: 'initial' }} fontSize="sm">
+          {label}
+        </Text>
+      </Flex>
+    </Flex>
+  );
+};
 
 const Sidebar = () => {
   const router = useRouter();
@@ -57,8 +74,8 @@ const Sidebar = () => {
         py="10"
       />
       <Flex flexDir={{ base: 'row', lg: 'column' }} w="100%" h={{ base: '4rem', lg: 'initial' }}>
-        {sidebarItems.map(({ url, label, icon }) => (
-          <Link key={label} href={url} passHref current>
+        {sidebarItems.map(({ url, label, icon }) =>
+          pathname === url ? (
             <Flex
               as="a"
               key={url}
@@ -78,11 +95,41 @@ const Sidebar = () => {
                 </Text>
               </Flex>
             </Flex>
-          </Link>
-        ))}
+          ) : (
+            <Link key={label} href={url} passHref>
+              <Flex
+                as="a"
+                key={url}
+                cursor="pointer"
+                p={{ base: '0', lg: '4' }}
+                bg={pathname === url ? 'primary.800' : ''}
+                color={pathname === url ? 'primary.100' : 'blackAlpha.900'}
+                w="100%"
+                align={{ base: 'center', lg: 'initial' }}
+                justify={{ base: 'center', lg: 'initial' }}
+                fontWeight="600"
+              >
+                <Flex color={url === '' && 'blackAlpha.400'}>
+                  <Icon as={icon} fontSize="2xl" />
+                  <Text ml={2} display={{ base: 'none', lg: 'initial' }} fontSize="sm">
+                    {label}
+                  </Text>
+                </Flex>
+              </Flex>
+            </Link>
+          )
+        )}
       </Flex>
     </Flex>
   );
 };
+{
+  /* pathname === url ? (
+            <LinkItem url={url} pathname={pathname} icon={icon} label={label} />
+          ) : ( */
+}
 
+{
+  /* ) */
+}
 export default Sidebar;
