@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import useLocalization from '../../hooks/useLocalization';
 import { fetchHistory, setHistory, selectHistory } from '../../redux/marketSlice';
-import Chart from './components/Chart';
+import OrdersChart from './../../components/OrdersChart';
 import OrdersDetail from './components/OrdersDetail';
 import StrategyDescription from './components/StrategyDescription';
 
@@ -32,7 +32,7 @@ const TradingPairOrders = ({ symbol }) => {
   return (
     <Flex flexDir="column" flexWrap="wrap" justify="space-around" w="100%">
       <StrategyDescription history={history} strategy={tradingPairs[symbol]} />
-      <Chart history={history} />
+      <OrdersChart history={history} />
       <OrdersDetail orders={history.orders} />
     </Flex>
   );
