@@ -27,17 +27,6 @@ const BacktestInfo = ({ backtest, change, entryPositions, info }) => {
       <Text mb="4">
         Lợi nhuận của bot: <strong>{backtest.totalProfit.toFixed(2)}$</strong>
       </Text>
-
-      <Text mb="4">
-        Lợi nhuận nếu chỉ HODL: <strong>{(change * info.initialAmount * (1 + entryPositions)).toFixed(2)}$</strong>
-      </Text>
-      <Text
-        mb="4"
-        color={backtest.totalProfit > change * info.initialAmount * (1 + entryPositions) ? 'green.500' : 'red.500'}
-      >
-        Lợi nhuận bot so với HODL:{' '}
-        <strong>{(backtest.totalProfit - change * info.initialAmount * (1 + entryPositions)).toFixed(2)}$</strong>
-      </Text>
     </>
   );
 };

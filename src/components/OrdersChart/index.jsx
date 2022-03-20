@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import colors from '../../theme/colors.js';
 import { Heading } from '@chakra-ui/react';
 
-const Chart = ({ backtest }) => {
+const OrdersChart = ({ data }) => {
   const upColor = colors.red[300];
   const upBorderColor = colors.red[700];
   const downColor = colors.green[300];
@@ -12,14 +12,14 @@ const Chart = ({ backtest }) => {
 
   function calculateMA(dayCount) {
     var result = [];
-    for (var i = 0, len = backtest.ohlcvs.length; i < len; i++) {
+    for (var i = 0, len = data.ohlcvs.length; i < len; i++) {
       if (i < dayCount) {
         result.push('-');
         continue;
       }
       var sum = 0;
       for (var j = 0; j < dayCount; j++) {
-        sum += +backtest.ohlcvs[i - j][1];
+        sum += +data.ohlcvs[i - j][1];
       }
       result.push(sum / dayCount);
     }
@@ -43,7 +43,7 @@ const Chart = ({ backtest }) => {
     },
     xAxis: {
       type: 'category',
-      data: backtest.time,
+      data: data.time,
       scale: true,
       boundaryGap: false,
       axisLine: { onZero: false },
@@ -78,7 +78,7 @@ const Chart = ({ backtest }) => {
       {
         name: 'Nến',
         type: 'candlestick',
-        data: backtest.ohlcvs,
+        data: data.ohlcvs,
         itemStyle: {
           color: upColor,
           color0: downColor,
@@ -91,7 +91,7 @@ const Chart = ({ backtest }) => {
               return param != null ? Math.round(param.value) + '' : '';
             },
           },
-          data: backtest.orders.map((order) => ({
+          data: data.orders.map((order) => ({
             name: 'Mark',
             coord: [(order.transactTime * 1000).toString(), order.price],
             value: order.price,
@@ -164,4 +164,4 @@ const Chart = ({ backtest }) => {
   );
 };
 
-export default Chart;
+export default OrdersChart;

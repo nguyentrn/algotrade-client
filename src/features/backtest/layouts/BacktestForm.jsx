@@ -163,10 +163,10 @@ const BacktestForm = ({ fetchData }) => {
             py="1"
           >
             <Text w="100%">Lệnh thứ</Text>
-            <Text w="40" textAlign="center">
+            <Text w="32" textAlign="center">
               Vị thế
             </Text>
-            <Text w="40" textAlign="center">
+            <Text w="32" textAlign="center">
               Vốn
             </Text>
           </Flex>

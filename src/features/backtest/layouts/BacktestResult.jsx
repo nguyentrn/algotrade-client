@@ -1,7 +1,8 @@
 import { Spinner, Text } from '@chakra-ui/react';
 import React from 'react';
 
-import Chart from '../../../components/Chart';
+import OrdersChart from '../../../components/OrdersChart';
+import ProfitChart from '../../../components/ProfitChart';
 import OrdersDetail from '../../tradingPairOrders/components/OrdersDetail';
 import BacktestInfo from './BacktestInfo';
 
@@ -22,8 +23,9 @@ const BacktestResult = ({ loading, error, backtest, change, info, entryPositions
     return (
       <>
         <BacktestInfo backtest={backtest} change={change} info={info} entryPositions={entryPositions} />
-        <Chart backtest={backtest} />
-        <OrdersDetail orders={backtest.orders} />
+        <ProfitChart profitByTime={backtest.profitByTime} time={backtest.time} />
+        <OrdersChart data={backtest} />
+        <OrdersDetail orders={backtest.orders} profitByTime={backtest.profitByTime} />
       </>
     );
   }

@@ -12,7 +12,7 @@ import {
 const NumberInput = (props) => {
   return (
     <CNumberInput my="1" {...props}>
-      <NumberInputField {...props.register} />
+      <NumberInputField px="1" {...props.register} />
       <NumberInputStepper>
         <NumberIncrementStepper />
         <NumberDecrementStepper />

@@ -1,6 +1,5 @@
 const formatOrders = (orders) => {
   const res = [];
-  let buyAmount = 0;
   for (let i = 0; i < orders.length; i++) {
     const order = { ...orders[i] };
     if (order.quantity) {
@@ -11,10 +10,7 @@ const formatOrders = (orders) => {
     if (order.side === 'BUY') {
       order.color = 'blue';
       order.type = 'open-position';
-      buyAmount += order.amount;
     } else {
-      order.profit = order.amount - buyAmount;
-      buyAmount = 0;
       if (order.price > orders[i - 1]?.price) {
         order.color = 'green';
         order.type = 'take-profit';
