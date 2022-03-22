@@ -1,6 +1,6 @@
 import { Flex, Stat, StatLabel, StatNumber, StatHelpText, StatArrow, Badge, Image, Text } from '@chakra-ui/react';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import useLocalization from '../../../hooks/useLocalization';
 import getTokenAlphaColor from '../../../utils/getTokenAlphaColor';
 
@@ -12,11 +12,13 @@ const TradingPair = ({ tradingPair }) => {
     setPercent24h(Math.round(((tradingPair.c - tradingPair.o) * 10000) / tradingPair.o) / 100);
   }, [tradingPair.c, tradingPair.o]);
 
+  const bg = useMemo(() => getTokenAlphaColor(tradingPair.color, 1, 0.05), [tradingPair.color]);
+
   return (
     <Link href={`/trading-pair/${tradingPair.symbol}`} passHref>
       <Flex
         cursor="pointer"
-        // bg="red"
+        bg={bg}
         mx={{ base: '0', sm: '8' }}
         my={{ base: '1', lg: '2' }}
         px={{ base: '4', lg: '6' }}

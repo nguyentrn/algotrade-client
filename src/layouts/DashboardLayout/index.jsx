@@ -2,6 +2,7 @@ import { Flex } from '@chakra-ui/react';
 
 import SocketContext from '../../context/SocketContext.js';
 import useSocket from '../../hooks/useSocket';
+import Background from './Background.jsx';
 import Breadcrumb from './Breadcrumb';
 import Error from './Error';
 import Header from './Header';
@@ -21,10 +22,13 @@ const DashboardLayout = (props) => {
       >
         <Sidebar />
         <Flex flexDir="column" mr={{ base: '0', lg: '4' }} boxShadow="lg" bg="whiteAlpha.900" flexGrow="1">
+          {/* <Background /> */}
+          <Breadcrumb />
           <Header />
           <Error />
-          {/* <Breadcrumb /> */}
-          <Flex px={{ base: '5px', lg: '20px' }} pb="20" pt="5" {...props} />
+          <Flex px={{ base: '5px', lg: '20px' }} pb="20" pt="5" {...props}>
+            {props.children}
+          </Flex>
         </Flex>
       </Flex>
     </SocketContext.Provider>

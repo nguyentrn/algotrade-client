@@ -21,6 +21,16 @@ const ProfitChart = ({ profitByTime, time }) => {
       axisLabel: {
         formatter: (time) => dayjs(time * 1000).format('HH:MM DD/MM'),
       },
+      axisPointer: {
+        snap: true,
+        label: {
+          show: true,
+          formatter: (data) => dayjs(data.value * 1000).format('HH:MM DD/MM'),
+        },
+        handle: {
+          show: true,
+        },
+      },
     },
     yAxis: {},
     series: [

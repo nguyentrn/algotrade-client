@@ -1,4 +1,4 @@
-import { Flex, Heading, FormControl, FormLabel, Input, Button, Text } from '@chakra-ui/react';
+import { Flex, Heading, FormControl, FormLabel, Input, Button, Text, Select } from '@chakra-ui/react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
@@ -44,6 +44,13 @@ const Wallet = () => {
         API Key
       </Heading>
       <Flex as="form" flexDir="column" onSubmit={handleSubmit(onSubmit)}>
+        <FormControl my="2">
+          <FormLabel htmlFor="exchange">Sàn giao dịch</FormLabel>
+          <Select id="exchange" {...register('exchange', { required: 'Please select exchange.' })}>
+            <option value="binance">Binance</option>
+          </Select>
+        </FormControl>
+
         <FormControl my="2">
           <FormLabel htmlFor="api_key">API Key</FormLabel>
           <Input

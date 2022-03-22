@@ -5,6 +5,8 @@
   "main": "",
   "scripts": {
     "dev": "next",
+    "test": "jest --watch",
+    "test:ci": "jest --ci",
     "build": "next build",
     "start": "next start -p 7979"
   },
@@ -40,8 +42,10 @@
     "react-dom": "^17.0.2",
     "react-hook-form": "^7.22.5",
     "react-icons": "^4.3.1",
+    "react-query": "^3.34.16",
     "react-redux": "^7.2.6",
     "react-use": "^17.3.1",
+    "simple-statistics": "^7.7.5",
     "socket.io-client": "^4.4.0",
     "technicalindicators": "^3.1.0"
   },
@@ -50,8 +54,14 @@
     "singleQuote": true
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.2",
+    "@testing-library/react": "^12.1.4",
+    "babel-jest": "^27.5.1",
     "eslint": "^8.4.1",
     "eslint-config-next": "^12.0.7",
+    "eslint-plugin-testing-library": "^5.1.0",
+    "jest": "^27.5.1",
+    "nodemon": "^2.0.15",
     "prettier": "^2.5.1"
   }
 }

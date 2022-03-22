@@ -1,5 +1,7 @@
+import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
+
 import { updateLastTickers } from '../redux/marketSlice';
 
 const endpoint = process.env.BINANCE_SOCKET_HOSTNAME;
@@ -35,6 +37,7 @@ const connectSocket = () => {
 const useSocket = () => {
   const socketRef = useRef();
   const dispatch = useDispatch();
+  const { asPath } = useRouter();
 
   // init
   useEffect(() => {
@@ -43,15 +46,11 @@ const useSocket = () => {
       const response = JSON.parse(e.data);
       if (response) {
         const { stream, data } = response;
-        if (stream === '!miniTicker@arr') {
+        if (stream === '!miniTicker@arr' && asPath.match(/trading-pair/g)) {
           dispatch(updateLastTickers(data));
         }
       }
     };
-    // const newSocket = io('localhost:3333', {
-    //   reconnectionDelayMax: 1e4,
-    // });
-    // socketRef.current = newSocket;
     return () => ws.close();
   }, []);
 

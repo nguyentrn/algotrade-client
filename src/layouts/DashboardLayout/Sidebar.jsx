@@ -52,7 +52,7 @@ const Sidebar = () => {
       minW={{ base: '100%', lg: '56', xl: '72' }}
       w={{ base: '100%', lg: '56', xl: '72' }}
       h={{ base: '4rem', lg: '100vh' }}
-      bg={{ base: 'white', lg: 'initial' }}
+      bg={{ base: 'white', lg: 'gray.200' }}
       zIndex={{ base: 10, lg: 'initial' }}
       position={{ base: 'fixed', lg: 'sticky' }}
       top={{ lg: '0' }}

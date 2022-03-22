@@ -7,8 +7,8 @@ import NumberInput from '../../../../components/NumberInput';
 
 const formatPosition = (val) => val + '%';
 const formatMultiples = (val) => '×' + val;
-const parsePosition = (val) => val.replace(/\%$/, '') * 1;
-const parseMultiples = (val) => val.replace(/^×/, '') * 1;
+const parsePosition = (val) => val.replace(/\%$/, '');
+const parseMultiples = (val) => val.replace(/^×/, '');
 
 const DCAInput = ({ entryPointInput, id }) => {
   const { register } = useFormContext();

@@ -46,5 +46,22 @@
   "advanced-strategy": "Chiến lược nâng cao",
   "earningCallback": "Chốt lời khi hồi lại",
   "callbackForMarginCall": "Mua vào khi hồi lên",
-  "initPeriod": "Số phiên xét khi khởi tạo lệnh"
+  "initPeriod": "Số phiên xét khi khởi tạo lệnh",
+
+  "doji": "Nến Doji",
+  "trueDoji": "Nến True Doji",
+  "dragonflyDoji": "Nến",
+
+  "risingThreeMethods": "Nến",
+
+  "hammer": "Nến Búa",
+  "invertedHammer": "Nến Búa ngược",
+  "bullishEngulfing": "Nến Nhấn chìm tăng",
+
+  "morningStar": "Nến Sao Mai",
+  "morningDojiStar": "Nến Sao Mai Doji",
+  "piercingLine": "Nến Xuyên",
+  "threeWhiteSoldier": "Nến Ba chàng Lính trắng",
+  "hangingMan": "Nến Người treo cổ",
+  "bearishEngulfing": "Nến Nhấn chìm giảm"
 }

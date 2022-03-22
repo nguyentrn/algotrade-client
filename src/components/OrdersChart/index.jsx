@@ -32,6 +32,7 @@ const OrdersChart = ({ data }) => {
       axisPointer: {
         type: 'cross',
       },
+      valueFormatter: (value) => 'ádasdaasdas',
     },
     legend: {
       data: ['Nến', 'MA20', 'MA50', 'MA200'],
@@ -52,6 +53,16 @@ const OrdersChart = ({ data }) => {
       max: 'dataMax',
       axisLabel: {
         formatter: (time) => dayjs(time * 1).format('HH:MM DD/MM'),
+      },
+      axisPointer: {
+        snap: true,
+        label: {
+          show: true,
+          formatter: (data) => dayjs(data.value * 1).format('HH:MM DD/MM'),
+        },
+        handle: {
+          show: true,
+        },
       },
     },
     yAxis: {

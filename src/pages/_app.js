@@ -1,10 +1,12 @@
-import { SessionProvider } from "next-auth/react";
-import { Provider as ReduxProvider } from "react-redux";
-import { ChakraProvider } from "@chakra-ui/react";
-import { appWithTranslation } from "next-i18next";
+import { SessionProvider } from 'next-auth/react';
+import { Provider as ReduxProvider } from 'react-redux';
+import { ChakraProvider } from '@chakra-ui/react';
+import { appWithTranslation } from 'next-i18next';
+import { QueryClientProvider, QueryClient } from 'react-query';
 
-import store from "../redux/store";
-import theme from "../theme";
+import store from '../redux/store';
+import theme from '../theme';
+const queryClient = new QueryClient();
 
 const App = ({ Component, pageProps }) => {
   return (
@@ -17,7 +19,9 @@ const App = ({ Component, pageProps }) => {
     >
       <ReduxProvider store={store}>
         <ChakraProvider resetCSS theme={theme}>
-          <Component {...pageProps} />
+          <QueryClientProvider client={queryClient}>
+            <Component {...pageProps} />
+          </QueryClientProvider>
         </ChakraProvider>
       </ReduxProvider>
     </SessionProvider>

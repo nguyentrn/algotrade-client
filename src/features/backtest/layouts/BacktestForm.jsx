@@ -66,7 +66,6 @@ const BacktestForm = ({ fetchData }) => {
   const onSubmit = async (data) => {
     data.strategy = 'simple-dca';
     if (!data.symbol) {
-      console.log(data);
       data.symbol = 'BTCUSDT';
     }
     if (!data.entryPoints) {
@@ -74,6 +73,10 @@ const BacktestForm = ({ fetchData }) => {
       data.entryPoints = [];
     } else {
       data.isDCA = true;
+      data.entryPoints = data.entryPoints.map(({ position, multiples }) => ({
+        position: position * 1,
+        multiples: multiples * 1,
+      }));
     }
     fetchData(data);
   };
